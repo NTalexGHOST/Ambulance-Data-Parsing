@@ -14,3 +14,6 @@
 2)	Люди важнее процессов
 3)	Общение с заказчиком
 4)	Готовность к изменениям
+
+Список литературы:
+https://docs.google.com/document/d/17R7QnF0J1OO3HHy4VP1NCsV_O-TC7nUIVdEkAMHAgWQ/edit
