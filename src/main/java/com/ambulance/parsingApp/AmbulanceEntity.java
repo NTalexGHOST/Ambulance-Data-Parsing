@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class AmbulanceEntity {
     @Id
     @Column
-    private String id;
+    public String id;
 
     @Column
     public java.util.Date callDate;
