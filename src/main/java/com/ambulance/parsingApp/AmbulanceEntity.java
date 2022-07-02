@@ -1,35 +1,22 @@
 package com.ambulance.parsingApp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
+//Класс со структурой данных, которые будут записываться в таблицу бд
 public class AmbulanceEntity {
-    @Id
-    @Column
-    public String id;
+    public final String id;
 
-    @Column
-    public java.util.Date callDate;
+    public final java.util.Date callDate;
 
-    @Column
-    public Integer age;
+    public final Integer age;
 
-    @Column
-    public String cause;
+    public final String cause;
 
-    @Column
-    public String diagnose;
+    public final String diagnose;
 
-    @Column
-    public String destination;
+    public final String destination;
 
-    @Column
-    public java.util.Date timeResponse;
+    public final java.util.Date timeResponse;
 
-    @Column
-    public java.util.Date timeArrive;
+    public final java.util.Date timeArrive;
 
     public AmbulanceEntity(String id, java.util.Date callDate, Integer age, String cause, String diagnose, String destination ,java.util.Date timeResponse, java.util.Date timeArrive){
         this.id = id;
@@ -40,5 +27,25 @@ public class AmbulanceEntity {
         this.destination = destination;
         this.timeResponse = timeResponse;
         this.timeArrive = timeArrive;
+    }
+
+    public void checkDataIntegrity() throws Exception {
+        Exception emptyornull = new Exception("Can't use empty string");
+        if (id==null || id.isEmpty())
+            throw emptyornull;
+        if (callDate==null)
+            throw emptyornull;
+        if (age==null)
+            throw emptyornull;
+        if (cause==null || cause.isEmpty())
+            throw emptyornull;
+        if (diagnose==null || diagnose.isEmpty())
+            throw emptyornull;
+        if (destination==null || destination.isEmpty())
+            throw emptyornull;
+        if (timeResponse==null)
+            throw emptyornull;
+        if (timeArrive==null)
+            throw emptyornull;
     }
 }

@@ -20,10 +20,9 @@ public class MainController {
         return "MainPage";
     }
     @GetMapping("/test-data")
-    public AmbulanceEntity test (@RequestParam(value = "path", defaultValue = "src/data/2022/1.xls") String path) throws IOException {
+    public List<AmbulanceEntity> test (@RequestParam(value = "path", defaultValue = "src/data/2022/1.xls") String path) throws IOException {
         ExcelParser parser = new ExcelParser();
-        List<AmbulanceEntity> ambulanceList =  parser.getAmbulanceData(path);
-        return ambulanceList.get(0);
+        return parser.getAmbulanceData(path);
     }
 
 }
