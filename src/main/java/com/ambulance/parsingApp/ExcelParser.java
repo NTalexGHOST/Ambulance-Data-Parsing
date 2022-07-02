@@ -22,8 +22,10 @@ public class ExcelParser {
         List<AmbulanceEntity> ambulanceEntityList = new ArrayList<>();
         //Экземпляр класса, который мы будем использовать для записи данных в лист
         AmbulanceEntity ambulance;
-        for (int i = 3; i < sheet.getLastRowNum(); i++) {
-            if (sheet.getRow(i).getCell(0).getCellType() != CellType.STRING && DateUtil.isCellDateFormatted(sheet.getRow(i).getCell(0))) {
+        for (int i = 3; i < sheet.getLastRowNum()-10; i++) {
+            if (sheet.getRow(i).getCell(0) != null &&
+                    sheet.getRow(i).getCell(0).getCellType() != CellType.STRING &&
+                    DateUtil.isCellDateFormatted(sheet.getRow(i).getCell(0))) {
                 try {
                     String age = sheet.getRow(i).getCell(16).toString();
                     //Вызываем конструктор класса, в который вбиваются все значения
