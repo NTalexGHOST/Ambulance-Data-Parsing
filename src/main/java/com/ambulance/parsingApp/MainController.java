@@ -1,39 +1,50 @@
 package com.ambulance.parsingApp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Date;
 import java.util.Map;
+import java.util.Optional;
 
-@RestController
+@Controller
 public class MainController {
+    @Autowired
+    private AmbulanceEntityRepo ambulanceEntityRepo;
 
     @GetMapping("/")
     public String home(Map<String, Object> model) {
+        return "home";
+    }
+
+    @GetMapping("/start")
+    public String start(Map<String, Object> model) throws IOException {
 
         // Данный метод вызывается при заходе на сайт (localhost:8080)
-        // Здесь нужно будет разместить алгоритм парсинга данных, добавление их в бд и обновление если нужно
-        
-        List<AmbulanceEntity> test = new ArrayList<>();
         ExcelParser parser = new ExcelParser();
-        test = parser.getAmbulanceData("src/data/2022/1.xls");
-        
+        File directory = new File("src/data");
+        for (File item1 : directory.listFiles())
+            for (File item2 : item1.listFiles()) {
+                System.out.print(new Date().toString() + " Начата проверка файла по пути " + item2.getPath() + "\n");
+                parser.getAmbulanceData(item2.getPath(), ambulanceEntityRepo);
+                System.out.print(new Date().toString() + " Проверка файла завершена\n\n");
+            }
+
         return "home";
     }
 
     @PostMapping
-    public String filter(@RequestParam int year, Map<String, Object> model) {
+    public String filter(@RequestParam String year, Map<String, Object> model) {
 
         // Данный метод будет вызываться по введению пользователем интересующего года и нажатия на кнопку
-        // Также метод будет возвращать (!!!через model.put, а не return!!!) уже отсортированные по годы данные для графика
-        // Здесь и нужно разместить алгоритм для сортировки
 
-        List<String> values = new ArrayList<>();
+        Optional<AmbulanceEntity> values = ambulanceEntityRepo.findById("9420(1143)");
         model.put("values", values);
+
         return "home";
     }
 }
