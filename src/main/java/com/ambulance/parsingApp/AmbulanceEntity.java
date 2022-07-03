@@ -2,10 +2,12 @@ package com.ambulance.parsingApp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 //Класс со структурой данных, которые будут записываться в таблицу бд
 @Entity
+@Table(name="AmbulanceEntity")
 public class AmbulanceEntity {
     @Id
     private String id;
