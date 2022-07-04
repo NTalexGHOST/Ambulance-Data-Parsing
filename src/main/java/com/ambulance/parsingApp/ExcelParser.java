@@ -36,11 +36,7 @@ public class ExcelParser {
         FileInputStream file = new FileInputStream(path);
         Workbook workbook = new HSSFWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
-        //Счетчик ряда
-        //Лист со всеми данными
-        List<AmbulanceEntity> ambulanceEntityList = new ArrayList<>();
         //Экземпляр класса, который мы будем использовать для записи данных в лист
-        AmbulanceEntity ambulance;
         for (int i = 3; i < sheet.getLastRowNum()-10; i++) {
             if (sheet.getRow(i).getCell(0) != null &&
                     sheet.getRow(i).getCell(0).getCellType() != CellType.STRING &&
@@ -48,7 +44,7 @@ public class ExcelParser {
                 try {
                     String age = sheet.getRow(i).getCell(16).toString();
                     age = age.substring(0, age.length() - 4);
-                    //Проверяем данные на отсутсвие пустых строк или null
+                    //Проверяем данные на отсутствие пустых строк или null
                     checkDataIntegrity(sheet.getRow(i).getCell(3).toString(),
                             sheet.getRow(i).getCell(0).getDateCellValue(),
                             Integer.parseInt(age),
@@ -58,7 +54,7 @@ public class ExcelParser {
                             sheet.getRow(i + 5).getCell(8).getDateCellValue(),
                             sheet.getRow(i + 5).getCell(11).getDateCellValue());
                     //Вызываем конструктор класса, в который вбиваются все значения
-                    ambulance = new AmbulanceEntity(
+                    AmbulanceEntity ambulance = new AmbulanceEntity(
                             sheet.getRow(i).getCell(3).toString(),
                             sheet.getRow(i).getCell(0).getDateCellValue(),
                             Integer.parseInt(age),
