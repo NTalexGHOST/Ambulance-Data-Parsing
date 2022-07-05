@@ -2,14 +2,15 @@ package com.ambulance.parsingApp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -19,17 +20,15 @@ public class MainController {
     private AmbulanceEntityRepo ambulanceEntityRepo;
 
     @GetMapping
-    public String main(Map<String, Object> model) {
+    public String main(Model model) throws Exception {
 
-        // Данный метод вызывается при заходе на сайт (localhost:8080)
-        Iterable<AmbulanceEntity> values = ambulanceEntityRepo.findAll();
-        model.put("values", values);
+        filter("2020", model);
 
         return "home";
     }
 
     @GetMapping("start")
-    public String start(Map<String, Object> model) throws IOException {
+    public String start(Model model) throws Exception {
 
         // Данный метод вызывается при заходе на сайт (localhost:8080/start) и начинает проверку всех файлов
         // Файл для записи названий файлов, которые уже были проверены раньше
@@ -63,11 +62,28 @@ public class MainController {
         return "home";
     }
 
-    @PostMapping("filter")
-    public String filter(@RequestParam java.util.Date callDate, Map<String, Object> model) {
+    @PostMapping
+    public String filter(@RequestParam String callDate, Model model) throws Exception {
 
-        List<AmbulanceEntity> values = ambulanceEntityRepo.findByCallDate(callDate);
-        model.put("values", values);
+        int[] values = new int[12];
+        for (int i = 0; i < 12; i++)
+            values[i] = ambulanceEntityRepo.countAllByCallDateBetween(new SimpleDateFormat(
+                            "dd.MM.yyyy", Locale.ENGLISH).parse("01." + (i+1) + "." + callDate),
+                    new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse("31." + (i+1) + "." + callDate));
+        model.addAttribute("values", List.of(
+                List.of("Январь", values[0]),
+                List.of("Февраль", values[1]),
+                List.of("Март", values[2]),
+                List.of("Апрель", values[3]),
+                List.of("Май", values[4]),
+                List.of("Июнь", values[5]),
+                List.of("Июль", values[6]),
+                List.of("Август", values[7]),
+                List.of("Сентябрь", values[8]),
+                List.of("Октябрь", values[9]),
+                List.of("Ноябрь", values[10]),
+                List.of("Декабрь", values[11])
+        ));
 
         return "home";
     }
