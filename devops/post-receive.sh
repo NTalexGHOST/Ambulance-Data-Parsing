@@ -15,10 +15,10 @@ else
 	echo "Start running and compiling..."
 	docker run -it -v /home/user/ambulance_data_app/server:/Ambulance-Data-Parsing/target --name compile-jar compile-jar:v1
 fi
-docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml  restart
+docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml -d restart
 if [ $? -eq 0 ]; then
 	echo "Services restat"
 else
-	docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml up
+	docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml -d  up
 fi
 docker ps
