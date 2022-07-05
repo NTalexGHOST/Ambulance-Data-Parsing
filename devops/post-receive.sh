@@ -1,10 +1,12 @@
 #!/bin/bash
 
-git --work-tree=/home/use/Ambulance-Data-Parsing --git-dir=/home/user/Ambulance-Data-Parsing.git checkout -f
+git --work-tree=/home/user/Ambulance-Data-Parsing --git-dir=/home/user/Ambulance-Data-Parsing/.git checkout -f
 
 # mkdir /home/user/parse-result
 
-echo "Update received, start compile and reboot app"
+echo "|-----------------------------------------------|"
+echo "| Update received, start compile and reboot app |"
+echo "|-----------------------------------------------|"
 
 if [ docker start compile-jar ]; then
 	echo "Start compiling..."
@@ -13,4 +15,10 @@ else
 	docker run -it -v /home/user/ambulance_data_app/server:/Ambulance-Data-Parsing/target --name compile-jar compile-jar:v1
 fi
 
-docker compose reboot
+if [ docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml  restart ]; then
+	echo "Services restat"
+else
+	docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml up
+fi
+
+docker ps
