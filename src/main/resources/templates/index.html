@@ -1,11 +1,34 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
 	<title>ambulance data parcing webpage</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" th:inline="javascript">
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Вызовов');
+                data.addRows([[${values}]]);
+
+                var options = {
+					title: 'Ambulance calls frequency for ' + [[${yearIn}]],
+					curveType: 'function',
+					legend: { position: 'none' },
+					backgroundColor: "transparent"
+				};
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+                chart.draw(data, options);
+            }
+    </script>
 </head>
 
 <body>
@@ -31,14 +54,14 @@
 		<main>
 			<div class="info_block">
 				<h2>Statistics</h2>
-				<div id="chart_div"></div>
+				<div id="chart_div1"></div>
 			</div>
 
 			<hr>
 
 			<div class="info_block">
 				<h2>Forecasting</h2>
-				<div id="chart_div"></div>
+				<div id="chart_div2"></div>
 			</div>
 
 			<hr>
@@ -73,9 +96,6 @@
 		</footer>
 
 	</div>
-
-	<script type="text/javascript" src = "scripts/chart-draw.js" th:inline="javascript">
-	</script>
 
 </body>
 

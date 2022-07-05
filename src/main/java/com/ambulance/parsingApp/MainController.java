@@ -24,7 +24,7 @@ public class MainController {
 
         filter("2020", model);
 
-        return "home";
+        return "index";
     }
 
     @GetMapping("start")
@@ -59,7 +59,7 @@ public class MainController {
             }
         writer.close();
 
-        return "home";
+        return "index";
     }
 
     @PostMapping
@@ -84,7 +84,8 @@ public class MainController {
                 List.of("Ноябрь", values[10]),
                 List.of("Декабрь", values[11])
         ));
+        model.addAttribute("yearIn", callDate);
 
-        return "home";
+        return "index";
     }
 }
