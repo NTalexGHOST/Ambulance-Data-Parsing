@@ -1,0 +1,21 @@
+version: "0.1"
+services:
+  postgres-db:
+    image: postgres:14.4-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "ambulance-data-source"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+    volumes:
+      /home/user/ambulance_data_app/postgres-db:/var/lib/postgresql/data
+
+  ambulance-app:
+    build: /home/user/Ambulance-Data-Parsing/devops/ambulance-server
+    ports:
+      - "8080:8080"
+    volumes:
+      /home/user/ambulance_data_app/server:/ambulance_app
+    depends_on:
+      - postgres-db
