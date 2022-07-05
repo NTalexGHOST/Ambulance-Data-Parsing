@@ -13,7 +13,7 @@ if [ $? -eq 0 ]; then
 	echo "Start compiling..."
 else
 	echo "Start running and compiling..."
-	docker run -it -v /home/user/ambulance_data_app/server:/Ambulance-Data-Parsing/target --name compile-jar compile-jar
+	docker run -it -v /home/user/ambulance_data_app/server:/Ambulance-Data-Parsing/target -v /home/user/Ambulance-Data-Parsing/:/Ambulance-Data-Parsing --name compile-jar compile-jar
 fi
 docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml -d restart
 if [ $? -eq 0 ]; then
