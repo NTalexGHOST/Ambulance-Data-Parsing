@@ -16,11 +16,11 @@ else
 fi
 echo "---- Compiling complete ----"
 echo "---- Application will be restart ----"
-docker compose --attach stderr -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml restart
+docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml restart --attach stderr
 if [ $? -eq 0 ]; then
 	echo -n ""
 else
-	docker compose --attach stderr -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml up
+	docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml up --attach stderr
 fi
 echo "---- Application is running ----"
 docker ps
