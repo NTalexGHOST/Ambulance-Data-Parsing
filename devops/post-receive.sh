@@ -9,7 +9,7 @@ echo "---- Update received, start compile and reboot app ----"
 echo "---- Start compiling ----"
 docker start -a stderr compile-jar
 if [ $? -eq 0 ]; then
-
+	echo -n ""
 else
 	echo "---- Create compile container ----"
 	docker run -a stderr -v /home/user/Ambulance-Data-Parsing/target:/Ambulance-Data-Parsing/target -v /home/user/Ambulance-Data-Parsing/:/Ambulance-Data-Parsing --name compile-jar compile-jar
