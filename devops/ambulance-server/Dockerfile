@@ -3,5 +3,6 @@
 
 FROM openjdk:17-alpine
 EXPOSE 8080
-RUN mkdir ambulance_app
-ENTRYPOINT ["java","-jar","/ambulance_app/parsingApp-0.0.1-SNAPSHOT.jar"]
+RUN mkdir target \
+	&& mkdir -p src/data
+ENTRYPOINT ["java","-jar","/target/parsingApp-0.0.1-SNAPSHOT.jar"]
