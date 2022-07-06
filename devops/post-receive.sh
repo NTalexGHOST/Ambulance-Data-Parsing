@@ -8,15 +8,18 @@ echo "|-----------------------------------------------|"
 
 docker start compile-jar
 if [ $? -eq 0 ]; then
-	echo "Start compiling..."
+	echo "---- Start compiling ----"
 else
-	echo "Start running and compiling..."
-	docker run -a -v /home/user/Ambulance-Data-Parsing/target:/Ambulance-Data-Parsing/target -v /home/user/Ambulance-Data-Parsing/:/Ambulance-Data-Parsing --name compile-jar compile-jar
+	echo "---- Start running and compiling ----"
+	docker run -a stderr -v /home/user/Ambulance-Data-Parsing/target:/Ambulance-Data-Parsing/target -v /home/user/Ambulance-Data-Parsing/:/Ambulance-Data-Parsing --name compile-jar compile-jar
+	echo "---- Compiling complete! ----"
 fi
+echo "---- Application will be restart ----"
 docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml restart
-if [ $? -eq 0 ]; then
-	echo "Services restart"
-else
-	docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml up
-fi
+echo "---- Application is running ----"
+# if [ $? -eq 0 ]; then
+# 	echo "---- Services restart ----"
+# else
+# 	docker compose -f /home/user/Ambulance-Data-Parsing/devops/docker-compose.yml up
+# fi
 docker ps
