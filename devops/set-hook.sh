@@ -3,5 +3,5 @@
 echo -n "Select branch to checkout: "
 read branch
 git checkout $branch -f
-mv ./Ambulance-Data-Parsing/devops/post-receive.sh ./Ambulance-Data-Parsing/.git/hooks/post-receive
-chmod +x ./Ambulance-Data-Parsing/.git/hooks/post-receive
+mv /home/user/Ambulance-Data-Parsing/devops/post-receive.sh /home/user/Ambulance-Data-Parsing/.git/hooks/post-receive
+chmod +x /home/user/Ambulance-Data-Parsing/.git/hooks/post-receive
