@@ -12,7 +12,7 @@ if [ $? -eq 0 ]; then
 	echo -n ""
 else
 	echo "---- Create compile container ----"
-	docker run --attach -v /home/user/Ambulance-Data-Parsing/target:/Ambulance-Data-Parsing/target -v /home/user/Ambulance-Data-Parsing/:/Ambulance-Data-Parsing --name devops-compile-jar compile-jar
+	docker run --attach stdout -v /home/user/Ambulance-Data-Parsing/target:/Ambulance-Data-Parsing/target -v /home/user/Ambulance-Data-Parsing/:/Ambulance-Data-Parsing --name devops-compile-jar compile-jar
 fi
 echo "---- Compiling complete ----"
 echo "---- Application will be restart ----"
