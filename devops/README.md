@@ -1,4 +1,4 @@
-[Ссылка на новый диск]()
+[Ссылка на новый диск](https://drive.google.com/file/d/1Na4G4yEp0gDX8ECVZLOgLy0V7hvgdUx1/view?usp=sharing)
 
 Данные для входа на сервер - user:2300  
 Алгоритм запуска:
