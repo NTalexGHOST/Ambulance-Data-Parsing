@@ -18,7 +18,7 @@
 - Построить прогнозирование  
 - Вывести данные в виде графиков  
 
-[Ссылка на новый диск](https://drive.google.com/file/d/1Na4G4yEp0gDX8ECVZLOgLy0V7hvgdUx1/view?usp=sharing)
+[Ссылка на диск](https://drive.google.com/file/d/1Na4G4yEp0gDX8ECVZLOgLy0V7hvgdUx1/view?usp=sharing)
 
 Данные для входа на сервер - user:2300  
 Алгоритм запуска:
@@ -34,7 +34,7 @@
 Подключение к серверу теперь производится по IP полученного после `sh get_ip` в виде `<---IP--->:8080`
 
 
-[Ссылка на диск](https://drive.google.com/file/d/12OLn_cnKpZyv_zEonmuEjXOy5VuKX4hC/view?usp=sharing)
+[Ссылка на стараый диск](https://drive.google.com/file/d/12OLn_cnKpZyv_zEonmuEjXOy5VuKX4hC/view?usp=sharing)
 
 Данные для входа на сервер - user:2300  
 IP базы и запуск контейнера с ней `sh start_postbd`  
