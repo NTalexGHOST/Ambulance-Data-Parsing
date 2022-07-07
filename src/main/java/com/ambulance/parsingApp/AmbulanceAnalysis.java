@@ -14,15 +14,15 @@ public class AmbulanceAnalysis {
 
     //Прогноз делается по методу скользящих средних
     public List<Integer> forecast(String forecastYear, AmbulanceEntityRepo repo) throws Exception {
-        Model forecastModel = null;
 
         //Забираем все значения по вызовам из дб и закидываем их в один большой лист
         var dataPerYear = getForecastData(repo);
         //Проверка на небходимость прогноза
-        if (!dataPerYear.get(years.indexOf(forecastYear)).contains(0)) {
-            System.out.println("Известны все значения в году, прогноз не требуется");
-            return null;
-        }
+        try {
+            if (!dataPerYear.get(years.indexOf(forecastYear)).contains(0)) {
+                return null;
+            }
+        } catch (Exception e) { return null; }
 
         //Находим среднее для каждых трех элементов в каждом годы
         List<List<Integer>> avgPerYear = new ArrayList<>();
@@ -57,13 +57,11 @@ public class AmbulanceAnalysis {
                     forecast.set(i, 3 * rollingAvg[i - 2] - forecast.get(i - 2) - forecast.get(i - 1));
         }
 
-
-        System.out.println(forecast);
         return forecast;
     }
 
     //Соберем данные для постройки прогноза
-    List<List<Integer>> getForecastData(AmbulanceEntityRepo repo) throws Exception {
+    private List<List<Integer>> getForecastData(AmbulanceEntityRepo repo) throws Exception {
         File directory = new File("src/data");
         years = new ArrayList<>();
 

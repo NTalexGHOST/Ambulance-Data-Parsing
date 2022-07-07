@@ -9,23 +9,39 @@
 	<script type="text/javascript" th:inline="javascript">
 
             google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(drawChart1);
+            google.charts.setOnLoadCallback(drawChart2);
 
-            function drawChart() {
-
+            function drawChart1() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Topping');
-                data.addColumn('number', 'Вызовов');
+                data.addColumn('number', 'Calls');
                 data.addRows([[${values}]]);
 
                 var options = {
-					title: 'Ambulance calls frequency for ' + [[${yearIn}]],
+					title: [[${yearIn}]],
 					curveType: 'function',
 					legend: { position: 'none' },
 					backgroundColor: "transparent"
 				};
 
                 var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+                chart.draw(data, options);
+            }
+            function drawChart2() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Calls');
+                data.addRows([[${forecastingValues}]]);
+
+                var options = {
+					title: [[${yearIn2}]],
+					curveType: 'function',
+					legend: { position: 'none' },
+					backgroundColor: "transparent"
+				};
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
                 chart.draw(data, options);
             }
     </script>
@@ -61,6 +77,7 @@
 
 			<div class="info_block">
 				<h2>Forecasting</h2>
+				<h2 th:text="${info}"></h2>
 				<div id="chart_div2"></div>
 			</div>
 
