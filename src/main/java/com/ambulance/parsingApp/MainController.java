@@ -86,6 +86,9 @@ public class MainController {
         ));
         model.addAttribute("yearIn", callDate);
 
+        AmbulanceAnalysis analysis = new AmbulanceAnalysis();
+        analysis.forecast(callDate, ambulanceEntityRepo);
+
         return "index";
     }
 }
