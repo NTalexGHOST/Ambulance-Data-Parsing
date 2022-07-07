@@ -69,49 +69,5 @@ public class ExcelParser {
             }
         }
     }
-
-    public List<AmbulanceEntity> getAmbulanceData_old(String path) throws IOException {
-        //Открываем необходмиый файл
-        FileInputStream file = new FileInputStream(path);
-        Workbook workbook = new HSSFWorkbook(file);
-        Sheet sheet = workbook.getSheetAt(0);
-        //Счетчик ряда
-        int i = 0;
-        //Лист со всеми данными
-        List<AmbulanceEntity> ambulanceEntityList = new ArrayList<>();
-        //Берем каждый ряд строки
-        for (Row row : sheet) {
-            //Получаем первую клетку в каждой строке
-            Cell cell = row.getCell(0);
-            //Если клетка не пустая, не является строкой и из нее корректно вытаскивается дата => это клетка с датой,
-            //относительно которой можно вытащить и другие данные, так как они находятся на одном отдалении от даты
-            //(а если данные находятся в других клетках, то они вызовут исключение и они автоматически отбросятся)
-            if (cell != null && cell.getCellType() != CellType.STRING && cell.getDateCellValue() != null && i > 2) {
-                AmbulanceEntity ambulance;
-                try {
-                    String age = sheet.getRow(i + 6).getCell(16).toString();
-                    //Вызываем конструктор класса, в который вбиваются все значения
-                    ambulance = new AmbulanceEntity(
-                            sheet.getRow(i).getCell(3).toString(),
-                            sheet.getRow(i).getCell(0).getDateCellValue(),
-                            Integer.parseInt(age.trim()),
-                            //Integer.parseInt(age.split(" ")[0]),
-                            sheet.getRow(i + 2).getCell(1).toString(),
-                            sheet.getRow(i + 3).getCell(1).toString(),
-                            sheet.getRow(i + 1).getCell(1).toString(),
-                            sheet.getRow(i + 11).getCell(8).getDateCellValue(),
-                            sheet.getRow(i + 11).getCell(11).getDateCellValue()
-                    );
-                } catch (Exception ignore) {
-                    i++;
-                    continue;
-                }
-                //Добавляем полученную структуру в общий лист
-                ambulanceEntityList.add(ambulance);
-            }
-            i++;
-        }
-        return ambulanceEntityList;
-    }
 }
 
