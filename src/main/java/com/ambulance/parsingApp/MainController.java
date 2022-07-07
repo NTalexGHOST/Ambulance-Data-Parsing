@@ -50,11 +50,13 @@ public class MainController {
             String item1Name = item1.getName();
             for (File item2 : item1.listFiles()) {
                 String item2Name = item2.getName().split("\\.")[0];
+                System.out.print("\n" + new Date().toString() + " Начата проверка файла по пути " + item2.getPath() + "\n");
                 if (newFileCondition || !checkedFiles.contains(item1.getName() + "_" + item2Name)) {
                     parser.getAmbulanceData(item2.getPath(), ambulanceEntityRepo);
                     writer.write(item1Name + "_" + item2Name + "\r\n");
                     writer.flush();
                 }
+                System.out.print(new Date().toString() + " Проверка файла завершена\n");
             }
         }
         writer.close();
