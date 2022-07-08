@@ -18,23 +18,29 @@
 - Построить прогнозирование  
 - Вывести данные в виде графиков  
 
-[Ссылка на диск](https://drive.google.com/file/d/1Na4G4yEp0gDX8ECVZLOgLy0V7hvgdUx1/view?usp=sharing)
+[Ссылка на диск с готовыми данными](https://drive.google.com/file/d/14JxeEjJlYiEqiyNfuRvp7OrOGBKNm7z3/view?usp=sharing)  
+Данный диск импортируется в VirtualBox  
+
+[Ссылка на диск](https://drive.google.com/file/d/1Na4G4yEp0gDX8ECVZLOgLy0V7hvgdUx1/view?usp=sharing)  
+Данный диск импортируется в VirtualBox  
 
 Данные для входа на сервер - user:2300  
 Алгоритм запуска:
 - Логинимся на сервер и узнаем IP через `sh get_ip`
 - Затем на хосте виртуалки добавляем сервер как удаленный репозиторий
 `git remote add live-server user@<---IP--->:/home/user/Ambulance-Data-Parsing`
-- Также не забываем сменить IP в строке подключения к базе данных в `application.properties` 
+- Также не забываем сменить IP в строке подключения к базе данных в `src/resources/templates/application.properties` 
 (его также нужно будет закоммитить для отправки на сервер)
-- Делаем `git push live-server test` на данный репозитой в ветку test (пока что)
+- Делаем `git push live-server test` на репозитой сервера в ветку test (пока что)
 - Возвращаемся на сервер и делаем первый запуск `sh first_boot`
 В дальнейшем сервер сам перезапускается при обнаружении полученного `git push`  
 
 Подключение к серверу теперь производится по IP полученного после `sh get_ip` в виде `<---IP--->:8080`
 
+`<---IP--->:8080/start` для начала парсинга данных 
 
-[Ссылка на стараый диск](https://drive.google.com/file/d/12OLn_cnKpZyv_zEonmuEjXOy5VuKX4hC/view?usp=sharing)
+[Ссылка на стараый диск](https://drive.google.com/file/d/12OLn_cnKpZyv_zEonmuEjXOy5VuKX4hC/view?usp=sharing)  
+Данный диск импортируется в VirtualBox  
 
 Данные для входа на сервер - user:2300  
 IP базы и запуск контейнера с ней `sh start_postbd`  
