@@ -1,0 +1,304 @@
+@import url(https://fonts.googleapis.com/css?family=Didact+Gothic|Comfortaa:400,700&subset=latin,cyrillic);
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-width: 500px;
+    min-height: 600px;
+
+    background: fixed linear-gradient(to top right, #4A514A, #B4C5B5);
+    font-family: 'Comfortaa', cursive;
+    text-transform: uppercase;
+    font-size: 1.5vh;
+    color: black;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 10%;
+    margin: 0;
+    box-sizing: border-box;
+
+    background: rgba(0, 0, 0, 0.4);
+    text-transform: none;
+}
+
+.logo {
+    display: flex;
+
+    width: 5%;
+    height: 100%;
+    min-width: 50px;
+    margin-left: 2.5%;
+
+    background: url(../images/logo.png) 100% 100% no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+form {
+    display: inline-flex;
+    flex-direction: row;
+
+    margin: inherit;
+    margin-left: 2.5%;
+}
+
+.selector {
+    margin: 0 5% 0 10%;
+    height: 35%;
+    align-self: center;
+}
+
+.selector>input[type="text"] {
+    height: 100%;
+    width: 100%;
+    min-width: 100px;
+
+    background-color: #e9f6ef;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.2vh;
+}
+
+input[type="text"]::-webkit-input-placeholder {opacity: 1; transition: opacity 0.3s ease;}
+input[type="text"]:hover::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+input[type="text"]:focus::-webkit-input-placeholder {opacity: 0;}
+
+input[type="submit"] {
+    background-color: #e9f6ef;
+    border-radius: 5px;
+
+    height: 65%;
+    min-width: 100px;
+    margin: 0 0 0 10%;
+    align-self: center;
+
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.2vh;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 1s ease 0s;
+}
+
+.contacts {
+    display: flex;
+
+    height: 25%;
+    margin: 0 5% 0 auto;
+    padding: 0.5%;
+    justify-self: flex-end;
+    align-self: center;
+    align-items: center;
+
+    background-color: #e9f6ef;
+    border: 2px solid black;
+    border-radius: 5px;
+
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.2vh;
+    transition: box-shadow 1s ease 0s;
+}
+
+.contacts a {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 90%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.info_block {
+    display: flex;
+    flex-flow: column nowrap;
+
+    position: relative;
+    margin: 2%;
+
+    width: 80%;
+    min-height: 400px;
+    max-width: 1000px;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid transparent;
+    border-image: linear-gradient(to left top, #4A514A 10%, #B4C5B5 30%, #E1F6E2 70%, #4A514A 90%);
+    border-image-slice: 1;
+
+    transition: box-shadow 1s ease 0s;
+
+    background-color: #ffffff10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+h2 {
+    display: flex;
+    align-self: center;
+    margin: 0 0 3% 0;
+    font-size: 1.5vh;
+}
+
+.info_block :after {
+    content: "";
+    background: url(../images/wave.png) 50% 60% no-repeat;
+
+    opacity: 0.15;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+#chart_div1, #chart_div2 {
+    display: flex;
+    height: 100%;
+    width: 90%;
+}
+
+hr {
+    display: flex;
+    border: thin solid #F28C28;
+    width: 70%;
+    max-width: 800px;
+}
+
+footer {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(160, 166, 162, 0.7) 20%, transparent);
+}
+
+.footer_wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+.footer_menu {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    opacity: 0.7;
+}
+
+.footer_menu>div {
+    display: flex;
+    margin: 5%;
+
+    align-self: center;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.footer_menu a {
+    display: block;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.separator {
+    display: flex;
+    width: 100%;
+    margin: 3%;
+}
+
+.separator>hr {
+    display: flex;
+    border: thin solid black;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.info {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0 0 0 3%;
+}
+
+#github_icon {
+    background: url(../images/github.png) 100% 100% no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#telegram_icon {
+    background: url(../images/telegram.png) 100% 100% no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#discord_icon {
+    background: url(../images/discord.png) 100% 100% no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+input[type="submit"]:hover,
+.info_block:hover, .contacts:hover {
+    transition: box-shadow 1s ease 0s;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#github_icon:hover,
+#telegram_icon:hover,
+#discord_icon:hover {
+    animation: triggerX 0.25s ease-out;
+}
+
+@keyframes triggerX {
+
+    0%,
+    100% {
+        transform: translateX(0px);
+    }
+
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(0px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>ambulance data parcing webpage</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" th:inline="javascript">
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart1);
+            google.charts.setOnLoadCallback(drawChart2);
+
+            function drawChart1() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Calls');
+                data.addRows([[${values}]]);
+
+                var options = {
+					title: [[${yearIn}]],
+					curveType: 'function',
+					legend: { position: 'none' },
+					backgroundColor: "transparent"
+				};
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+                chart.draw(data, options);
+            }
+            function drawChart2() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Calls');
+                data.addRows([[${forecastingValues}]]);
+
+                var options = {
+					title: [[${yearIn2}]],
+					curveType: 'function',
+					legend: { position: 'none' },
+					backgroundColor: "transparent"
+				};
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+                chart.draw(data, options);
+            }
+    </script>
+</head>
+
+<body>
+
+	<div class="menu">
+		<div class="logo"></div>
+
+		<form method="post">
+			<div class="selector">
+				<input type="text" name="callDate" placeholder="Enter the year...">
+			</div>
+
+			<input type="submit" value="Update data">
+		</form>
+
+		<div class="contacts">
+			<a href="#">Contact us</a>
+		</div>
+	</div>
+
+	<div class="wrapper">
+
+		<main>
+			<div class="info_block">
+				<h2>Statistics</h2>
+				<div id="chart_div1"></div>
+			</div>
+
+			<hr>
+
+			<div class="info_block">
+				<h2>Forecasting</h2>
+				<h2 th:text="${info}"></h2>
+				<div id="chart_div2"></div>
+			</div>
+
+			<hr>
+			<br>
+		</main>
+
+		<footer>
+
+			<div class="footer_wrapper">
+				<div class="separator">
+					<hr>
+				</div>
+
+				<div class="footer_menu">
+					<div id="github_icon">
+						<a href="#"></a>
+					</div>
+					<div id="telegram_icon">
+						<a href="#"></a>
+					</div>
+					<div id="discord_icon">
+						<a href="#"></a>
+					</div>
+				</div>
+
+				<div class="separator">
+					<hr>
+				</div>
+			</div>
+
+			<div class="info"><p>2022 Neoflex Student Practice Group</p></div>
+		</footer>
+
+	</div>
+
+</body>
+
+</html>
