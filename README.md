@@ -29,7 +29,7 @@
 - Логинимся на сервер и узнаем IP через `sh get_ip`
 - Затем на хосте виртуалки добавляем сервер как удаленный репозиторий
 `git remote add live-server user@<---IP--->:/home/user/Ambulance-Data-Parsing`
-- Также не забываем сменить IP в строке подключения к базе данных в `src/main/resources/templates/application.properties` 
+- Также не забываем сменить IP в строке подключения к базе данных в `src/main/resources/application.properties` 
 (его также нужно будет закоммитить для отправки на сервер)
 - Делаем `git push live-server test` на репозитой сервера в ветку test (пока что)
 - Возвращаемся на сервер и делаем первый запуск `sh first_boot`
